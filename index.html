@@ -29,32 +29,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .btn-ico:hover{background:var(--bg2)}
 .rotating{animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
 .sync-bar{display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 16px;font-size:12px;font-weight:500;color:var(--txt2);background:var(--bg2);border-bottom:0.5px solid var(--brd)}
 .sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:.3s}
 .sdot.loading{background:#f59e0b;animation:pulse .8s infinite}
 .sdot.ok{background:#22c55e}
 .sdot.err{background:#ef4444}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
 .stat{background:var(--bg);border-radius:16px;padding:14px 16px;border:0.5px solid var(--brd)}
 .stat-lbl{font-size:11px;color:var(--txt2);margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .stat-val{font-size:26px;font-weight:700;letter-spacing:-.5px}
 .stat-val.red{color:#e53e3e}
 .stat-val.grn{color:#22c55e}
-
 .scroll-row{display:flex;gap:7px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
 .scroll-row::-webkit-scrollbar{display:none}
 .fpill{padding:6px 14px;border-radius:20px;border:0.5px solid var(--brd2);background:var(--bg);cursor:pointer;font-size:12px;font-weight:600;color:var(--txt2);white-space:nowrap}
 .fpill.on{background:var(--txt);color:var(--bg);border-color:var(--txt)}
-
 .sort-row{display:flex;align-items:center;gap:8px;padding:0 16px 14px}
 .sort-lbl{font-size:11px;color:var(--txt2);font-weight:600;white-space:nowrap}
 .sbtns{display:flex;gap:5px}
 .sbtn{padding:5px 12px;border-radius:20px;border:0.5px solid var(--brd);background:var(--bg);cursor:pointer;font-size:11px;font-weight:600;color:var(--txt2);display:flex;align-items:center;gap:3px}
 .sbtn.on{background:var(--bg2);border-color:var(--brd3);color:var(--txt)}
-
 .grp-hd{font-size:11px;font-weight:700;color:var(--txt2);padding:4px 16px 8px;text-transform:uppercase;letter-spacing:.07em}
 .card{margin:0 16px 10px;border-radius:18px;border:0.5px solid var(--brd);background:var(--bg);overflow:hidden}
 .card.done-c{opacity:.4}
@@ -88,14 +83,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .abtn.adel:hover{background:#fee2e2}
 .abtn.apri{background:var(--txt);border-color:var(--txt);color:var(--bg)}
 .abtn.apri:hover{opacity:.8}
-
 .divhr{height:0.5px;background:var(--brd2);margin:6px 16px 10px}
 .empty{padding:3rem 16px;text-align:center;font-size:14px;color:var(--txt2)}
 .empty span{font-size:44px;display:block;margin-bottom:12px;opacity:.5}
-
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);padding:10px 22px;border-radius:20px;font-size:13px;font-weight:600;background:var(--txt);color:var(--bg);opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;z-index:999}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:20px 16px;overflow-y:auto}
 .overlay.hidden{display:none}
 .modal{background:var(--bg);border-radius:22px;width:100%;max-width:390px;margin-top:8px;overflow:hidden;border:0.5px solid var(--brd2)}
@@ -108,38 +100,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .dot{height:6px;border-radius:3px;background:var(--brd2);transition:.3s}
 .dot.on{background:var(--txt);width:22px}
 .dot:not(.on){width:6px}
-
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .catbtn{padding:18px 10px;border-radius:16px;border:0.5px solid var(--brd2);background:var(--bg);cursor:pointer;font-size:13px;font-weight:600;color:var(--txt2);display:flex;flex-direction:column;align-items:center;gap:7px}
 .catbtn:hover{background:var(--bg2)}
 .catbtn.on{border:1.5px solid #22c55e;background:#dcfce7;color:#166534}
 @media(prefers-color-scheme:dark){.catbtn.on{background:#052e16;color:#86efac}}
 .catbtn .ce{font-size:28px;line-height:1}
-
 .preset-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;max-height:280px;overflow-y:auto}
 .pbtn{padding:11px 13px;border-radius:12px;border:0.5px solid var(--brd2);background:var(--bg);cursor:pointer;font-size:12px;font-weight:600;color:var(--txt2);display:flex;align-items:center;gap:10px;text-align:left}
 .pbtn:hover{background:var(--bg2)}
 .pbtn.on{border:1.5px solid #22c55e;background:#dcfce7;color:#166534}
 @media(prefers-color-scheme:dark){.pbtn.on{background:#052e16;color:#86efac}}
 .pbtn .pe{font-size:20px;width:26px;text-align:center;flex-shrink:0}
-
 .mfield{margin-bottom:13px}
 .mfield label{display:block;font-size:11px;font-weight:700;color:var(--txt2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
 .mfield input,.mfield select{width:100%;padding:10px 13px;border:0.5px solid var(--brd2);border-radius:11px;background:var(--bg);color:var(--txt);font-size:14px;font-weight:500;outline:none;font-family:inherit}
 .mfield input:focus,.mfield select:focus{border-color:var(--brd3);border-width:1px}
 .mrow2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
 .dwrap{display:flex;align-items:center;gap:4px;border:0.5px solid var(--brd2);border-radius:11px;padding:10px 13px;background:var(--bg);cursor:text}
 .dwrap:focus-within{border-color:var(--brd3);border-width:1px}
 .ds{display:inline-block;padding:2px 5px;border-radius:6px;min-width:26px;text-align:center;font-size:14px;font-weight:600;color:var(--txt);outline:none;cursor:pointer;user-select:none}
 .ds.fx{background:#3b82f6;color:#fff}
 .dsep{font-size:14px;color:var(--txt3)}
-
 .remind-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .remind-lbl{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em}
 .remind-val{font-size:15px;font-weight:700;color:var(--txt)}
 input[type=range]{width:100%;accent-color:var(--txt)}
-
 .mnav{display:flex;gap:8px;margin-top:18px}
 .mnav button{flex:1;padding:12px;border-radius:13px;border:0.5px solid var(--brd2);background:transparent;cursor:pointer;font-size:13px;font-weight:700;color:var(--txt2);font-family:inherit}
 .mnav button:hover{background:var(--bg2)}
@@ -164,17 +150,14 @@ input[type=range]{width:100%;accent-color:var(--txt)}
       <button class="btn-ico" id="sync-btn" onclick="doSync()" title="Sync">↻</button>
     </div>
   </div>
-
   <div class="sync-bar">
     <div class="sdot loading" id="sdot"></div>
     <span id="stxt">Menghubungkan ke cloud...</span>
   </div>
-
   <div class="stats">
     <div class="stat"><div class="stat-lbl">Belum selesai</div><div class="stat-val red" id="s-pend">–</div></div>
     <div class="stat"><div class="stat-lbl">Selesai bulan ini</div><div class="stat-val grn" id="s-done">–</div></div>
   </div>
-
   <div class="scroll-row" id="filters"></div>
   <div class="sort-row">
     <span class="sort-lbl">Urutkan</span>
@@ -182,19 +165,16 @@ input[type=range]{width:100%;accent-color:var(--txt)}
   </div>
   <div id="list"></div>
 </div>
-
 <div class="overlay hidden" id="overlay" onclick="ovClick(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <div id="modal-inner"></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
 <script>
 const API='https://script.google.com/macros/s/AKfycbxC-NWbO3aXNVrXay4UG1C0c--U2yZcsg-hKOn2VpD0xM39jKvAcDO3yfXPwMwPPTc2/exec';
 const LKEY='jadwal_v2';
 const T=new Date();T.setHours(0,0,0,0);
-
 const CATS=[
   {id:'tagihan',label:'Tagihan',e:'💳',bg:'#FAEEDA',tx:'#7d4c00'},
   {id:'kesehatan',label:'Kesehatan',e:'🏥',bg:'#DCFCE7',tx:'#166534'},
@@ -211,7 +191,6 @@ const PR={
   kendaraan:[{e:'🔧',n:'Servis Rutin'},{e:'🛢️',n:'Ganti Oli'},{e:'📋',n:'Perpanjang STNK'},{e:'🚗',n:'Cicilan Mobil'},{e:'🏍️',n:'Cicilan Motor'},{e:'🔋',n:'Ganti Aki'}],
   lainnya:[{e:'📌',n:'Jadwal Lainnya'},{e:'⭐',n:'Target Menabung'},{e:'📚',n:'Langganan Kursus'},{e:'🎮',n:'Langganan Game'},{e:'🎵',n:'Langganan Musik'},{e:'🎬',n:'Langganan Film'}],
 };
-
 let items=[],filt='semua',sk='date',sd='asc',eid=null,step=0,md={};
 
 function setSync(state,msg){
@@ -219,35 +198,13 @@ function setSync(state,msg){
   document.getElementById('stxt').textContent=msg;
 }
 
-function jsonp(url){
-  return new Promise((resolve,reject)=>{
-    const cbName='_jcb'+Date.now();
-    const script=document.createElement('script');
-    let done=false;
-    window[cbName]=function(data){
-      if(done)return;done=true;
-      delete window[cbName];script.remove();
-      resolve(data);
-    };
-    script.onerror=function(){
-      if(done)return;done=true;
-      delete window[cbName];script.remove();
-      reject(new Error('Script error'));
-    };
-    script.src=url+(url.includes('?')?'&':'?')+'callback='+cbName+'&t='+Date.now();
-    document.head.appendChild(script);
-    setTimeout(()=>{
-      if(!done){done=true;delete window[cbName];script.remove();reject(new Error('Timeout'));}
-    },10000);
-  });
-}
-
 async function loadCloud(){
   setSync('loading','Mengambil data dari cloud...');
   try{
-    const data=await jsonp(API);
-    let parsed=data;
-    if(typeof data==='string') parsed=JSON.parse(data);
+    const url=API+'?t='+Date.now();
+    const res=await fetch(url,{method:'GET',redirect:'follow'});
+    const text=await res.text();
+    const parsed=JSON.parse(text);
     if(Array.isArray(parsed)){
       items=parsed;
       localStorage.setItem(LKEY,JSON.stringify(items));
@@ -255,7 +212,7 @@ async function loadCloud(){
       return true;
     }
   }catch(e){
-    console.log('Cloud load error:',e);
+    console.log('Cloud error:',e.message);
   }
   loadLocal();
   setSync('err','Offline — data lokal digunakan');
@@ -265,7 +222,7 @@ async function loadCloud(){
 function loadLocal(){
   try{
     const r=localStorage.getItem(LKEY);
-    if(r&&r!=='[]'){items=JSON.parse(r);return;}
+    if(r&&r.length>5){items=JSON.parse(r);return;}
   }catch(e){}
   items=[
     {id:'j1',name:'Listrik PLN',e:'⚡',cat:'tagihan',due:'05/06/2026',amt:450000,remind:3,done:false,note:'',rep:'monthly',every:1},
@@ -282,11 +239,9 @@ async function saveCloud(){
   setSync('loading','Menyimpan...');
   localStorage.setItem(LKEY,JSON.stringify(items));
   try{
-    await fetch(API,{
-      method:'POST',mode:'no-cors',
-      headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify(items)
-    });
+    const fd=new FormData();
+    fd.append('data',JSON.stringify(items));
+    await fetch(API,{method:'POST',mode:'no-cors',body:fd});
     setSync('ok','Tersimpan ✓  '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}));
   }catch(e){
     setSync('err','Tersimpan lokal saja');
@@ -306,7 +261,6 @@ function shT(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2500);
 }
-
 function pd(s){const[d,m,y]=s.split('/').map(Number);return new Date(y,m-1,d);}
 function fd(dt){return`${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;}
 function dif(d){return Math.round((d-T)/86400000);}
@@ -334,7 +288,6 @@ function ndx(due,rep,ev){
   else d.setFullYear(d.getFullYear()+1);
   return fd(d);
 }
-
 function render(){
   document.getElementById('hdr-date').textContent=T.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   document.getElementById('s-pend').textContent=items.filter(b=>!b.done).length;
@@ -409,7 +362,6 @@ function addGrp(el,lbl,list){
     el.appendChild(card);
   });
 }
-
 async function toggleDone(id){
   const b=items.find(x=>x.id===id);
   if(!b.done&&b.rep&&b.rep!=='none'){
@@ -423,13 +375,11 @@ async function delItem(id){
   if(!confirm('Hapus jadwal ini?'))return;
   items=items.filter(b=>b.id!==id);render();await saveCloud();
 }
-
 function openAdd(){eid=null;step=0;md={due:fd(new Date(T.getFullYear(),T.getMonth(),T.getDate()+7)),remind:3,rep:'monthly',every:1,amt:0,cat:'',e:'',name:'',note:''};showM();}
 function openEdit(id){eid=id;md={...items.find(b=>b.id===id)};step=2;showM();}
 function closeM(){document.getElementById('overlay').classList.add('hidden');eid=null;step=0;md={};}
 function ovClick(e){if(e.target===document.getElementById('overlay'))closeM();}
 function showM(){document.getElementById('overlay').classList.remove('hidden');renderStep();document.getElementById('overlay').scrollTop=0;}
-
 function renderStep(){
   const box=document.getElementById('modal-inner');
   const dots=[0,1,2].map((_,i)=>`<div class="dot${i===step?' on':''}"></div>`).join('');
@@ -554,7 +504,6 @@ async function svItem(){
   else{items.push({id:'j'+Date.now(),name,e,cat,due,amt,remind,note,rep,every,done:false});}
   closeM();render();await saveCloud();
 }
-
 (async()=>{
   render();
   await loadCloud();
