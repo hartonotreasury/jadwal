@@ -200,7 +200,7 @@ async function fromCloud(){
   try{
     const data=await jsonp(API);
     const parsed=typeof data==='string'?JSON.parse(data):data;
-    if(Array.isArray(parsed)){items=parsed;return true;}
+    if(Array.isArray(parsed)){items=parsed.filter(b=>b&&b.id&&b.due&&typeof b.due==="string"&&b.due.includes("/"));return true;}
   }catch(e){console.log('load err:',e.message);}
   return false;
 }
