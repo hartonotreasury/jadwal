@@ -287,7 +287,7 @@ function setS(k){sk===k?sd=sd==='asc'?'desc':'asc':(sk=k,sd='asc');rSort();rList
 function srt(list){
   return[...list].sort((a,b)=>{
     let va,vb;
-    if(sk==='date'){va=pd(a.due).getTime();vb=pd(b.due).getTime();}
+    if(sk==='date'){va=a.due?pd(a.due).getTime():0;vb=b.due?pd(b.due).getTime():0;}
     else if(sk==='name'){va=a.name.toLowerCase();vb=b.name.toLowerCase();}
     else{va=a.amt||0;vb=b.amt||0;}
     return sd==='asc'?(va<vb?-1:va>vb?1:0):(va>vb?-1:va<vb?1:0);
