@@ -504,6 +504,9 @@ async function svItem(){
   else{items.push({id:'j'+Date.now(),name,e,cat,due,amt,remind,note,rep,every,done:false});}
   closeM();render();await saveCloud();
 }
+
+setInterval(async()=>{await loadCloud();render();},30000);
+
 (async()=>{
   render();
   await loadCloud();
