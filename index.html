@@ -262,8 +262,8 @@ function sts(b){
   if(d<=b.remind)return{l:d===1?'Besok':d+' hari lagi',c:'sn',s:'⏱'};
   return{l:d+' hari lagi',c:'ok',s:'📅'};
 }
-function isAl(b){return!b.done&&dif(pd(b.due))>=0&&dif(pd(b.due))<=b.remind;}
-function isOv(b){return!b.done&&dif(pd(b.due))<0;}
+function isAl(b){return!b.done&&b.due&&dif(pd(b.due))>=0&&dif(pd(b.due))<=b.remind;}
+function isOv(b){return!b.done&&b.due&&dif(pd(b.due))<0;}
 function rl(b){if(!b.rep||b.rep==='none')return'';if(b.rep==='monthly')return b.every===1?'Tiap bulan':'Tiap '+b.every+' bln';return'Tiap tahun';}
 function ndx(due,rep,ev){const d=pd(due);if(rep==='monthly')d.setMonth(d.getMonth()+(ev||1));else d.setFullYear(d.getFullYear()+1);return fd(d);}
 
@@ -295,7 +295,7 @@ function srt(list){
 }
 function rList(){
   const el=document.getElementById('list');el.innerHTML='';
-  let fl=filt==='semua'?items:items.filter(i=>i.cat===filt);
+  let fl=(filt==="semua"?items:items.filter(i=>i.cat===filt)).filter(b=>b&&b.id&&b.due&&typeof b.due==="string"&&b.due.includes("/"));
   if(!fl.length){el.innerHTML='<div class="empty"><span>📭</span>Belum ada jadwal</div>';return;}
   const pend=srt(fl.filter(b=>!b.done)),done=srt(fl.filter(b=>b.done));
   const ov=pend.filter(isOv),al=pend.filter(isAl),nm=pend.filter(b=>!isOv(b)&&!isAl(b));
