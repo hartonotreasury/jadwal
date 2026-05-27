@@ -109,11 +109,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .mfield input,.mfield select{width:100%;padding:10px 13px;border:0.5px solid var(--brd2);border-radius:11px;background:var(--bg);color:var(--txt);font-size:14px;font-weight:500;outline:none;font-family:inherit}
 .mfield input:focus,.mfield select:focus{border-color:var(--brd3);border-width:1px}
 .mrow2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dwrap{display:flex;align-items:center;gap:4px;border:0.5px solid var(--brd2);border-radius:11px;padding:10px 13px;background:var(--bg);cursor:text}
-.dwrap:focus-within{border-color:var(--brd3);border-width:1px}
-.ds{display:inline-block;padding:2px 5px;border-radius:6px;min-width:26px;text-align:center;font-size:14px;font-weight:600;color:var(--txt);outline:none;cursor:pointer;user-select:none}
-.ds.fx{background:#3b82f6;color:#fff}
-.dsep{font-size:14px;color:var(--txt3)}
+input[type="date"]{width:100%;padding:10px 13px;border:0.5px solid var(--brd2);border-radius:11px;background:var(--bg);color:var(--txt);font-size:14px;font-weight:500;outline:none;font-family:inherit;cursor:pointer}
+input[type="date"]:focus{border-color:var(--brd3);border-width:1px}
 .remind-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .remind-lbl{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em}
 .remind-val{font-size:15px;font-weight:700;color:var(--txt)}
@@ -400,8 +397,20 @@ function renderPresets(box,dots){
 function selP(e,n){md.e=e;md.name=n;renderStep();}
 function goS0(){step=0;renderStep();}
 function goS2(){step=2;renderStep();}
+function toISO(due){
+  if(!due)return'';
+  const[d,m,y]=due.split('/');
+  return`${y}-${m}-${d}`;
+}
+function fromISO(iso){
+  if(!iso)return'';
+  const[y,m,d]=iso.split('-');
+  return`${d}/${m}/${y}`;
+}
 function renderDetail(box,dots){
-  const dp=md.due?md.due.split('/'):[String(T.getDate()).padStart(2,'0'),String(T.getMonth()+1).padStart(2,'0'),String(T.getFullYear())];
+  const defDate=new Date(T.getFullYear(),T.getMonth(),T.getDate()+7);
+  const defISO=`${defDate.getFullYear()}-${String(defDate.getMonth()+1).padStart(2,'0')}-${String(defDate.getDate()).padStart(2,'0')}`;
+  const dueISO=md.due?toISO(md.due):defISO;
   box.innerHTML=`
     <div class="modal-hdr"><h3>${eid?'Edit':'Tambah'} ${md.e||'📌'}</h3><button class="modal-close" onclick="closeM()">✕</button></div>
     <div class="modal-body">
@@ -413,14 +422,7 @@ function renderDetail(box,dots){
       </div>
       <div class="mfield">
         <label>Tanggal jatuh tempo</label>
-        <div class="dwrap">
-          <span class="ds" id="dd" tabindex="0" onclick="fDs('d');event.stopPropagation()" onkeydown="dKey(event,'d')">${dp[0]}</span>
-          <span class="dsep">/</span>
-          <span class="ds" id="dm" tabindex="0" onclick="fDs('m');event.stopPropagation()" onkeydown="dKey(event,'m')">${dp[1]}</span>
-          <span class="dsep">/</span>
-          <span class="ds" id="dy" tabindex="0" onclick="fDs('y');event.stopPropagation()" onkeydown="dKey(event,'y')">${dp[2]}</span>
-          <span style="margin-left:auto;color:var(--txt3)">📅</span>
-        </div>
+        <input type="date" id="mdue" value="${dueISO}">
       </div>
       <div class="mfield">
         <div class="remind-row"><span class="remind-lbl">Ingatkan sebelum</span><span><span class="remind-val" id="rl">${md.remind||3}</span> hari</span></div>
@@ -448,29 +450,6 @@ function renderDetail(box,dots){
     </div>`;
 }
 function tEv(){document.getElementById('evw').style.visibility=document.getElementById('mrep').value==='monthly'?'visible':'hidden';}
-let dbuf='';
-function fDs(seg){
-  ['dd','dm','dy'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove('fx');});
-  if(!seg)return;
-  const id=seg==='d'?'dd':seg==='m'?'dm':'dy';
-  const el=document.getElementById(id);
-  if(el){el.classList.add('fx');el.focus();}dbuf='';
-}
-function dKey(e,seg){
-  const id=seg==='d'?'dd':seg==='m'?'dm':'dy';
-  if(e.key>='0'&&e.key<='9'){
-    e.preventDefault();dbuf+=e.key;
-    const el=document.getElementById(id);
-    if(seg==='y'){el.textContent=dbuf.slice(-4).padStart(4,'0');if(dbuf.length>=4)fDs(null);}
-    else{const mx=seg==='d'?31:12;let v=parseInt(dbuf);
-      if(dbuf.length===1&&v>(seg==='d'?3:1)){el.textContent=String(v).padStart(2,'0');fDs(seg==='d'?'m':'y');dbuf='';}
-      else if(dbuf.length>=2){v=Math.min(Math.max(v,1),mx);el.textContent=String(v).padStart(2,'0');fDs(seg==='d'?'m':'y');dbuf='';}
-      else el.textContent=dbuf.padStart(2,'0');
-    }
-  } else if(e.key==='Tab'||e.key==='ArrowRight'){e.preventDefault();fDs(seg==='d'?'m':seg==='m'?'y':'d');}
-  else if(e.key==='ArrowLeft'){e.preventDefault();fDs(seg==='y'?'m':seg==='m'?'d':'y');}
-  else if(e.key==='Backspace'){e.preventDefault();dbuf='';const el=document.getElementById(id);if(el)el.textContent=seg==='y'?'____':'__';}
-}
 async function svItem(){
   if(busy)return;
   const name=document.getElementById('mn').value.trim();
@@ -481,10 +460,9 @@ async function svItem(){
   const rep=document.getElementById('mrep').value;
   const every=parseInt(document.getElementById('mev')?.value)||1;
   const note=document.getElementById('mnt').value.trim();
-  const dd=document.getElementById('dd').textContent;
-  const dm=document.getElementById('dm').textContent;
-  const dy=document.getElementById('dy').textContent;
-  const due=`${dd}/${dm}/${dy}`;
+  const dueISO=document.getElementById('mdue').value;
+  if(!dueISO){alert('Tanggal harus diisi');return;}
+  const due=fromISO(dueISO);
   const cat=md.cat||(eid?items.find(x=>x.id===eid).cat:'lainnya');
   const newItems=JSON.parse(JSON.stringify(items));
   if(eid){Object.assign(newItems.find(x=>x.id===eid),{name,e,due,amt,cat,remind,note,rep,every});}
@@ -493,7 +471,20 @@ async function svItem(){
   await saveAndReload(newItems);
 }
 
-setInterval(async()=>{if(!busy){const ok=await fromCloud();if(ok){setSync('ok','Auto ✓ '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}));render();}}},30000);
+let lastTS='';
+async function checkTS(){
+  if(busy)return;
+  try{
+    const data=await jsonp(API+'?action=ts');
+    const ts=typeof data==='object'?data.ts:data;
+    if(ts&&ts!==lastTS){
+      lastTS=ts;
+      const ok=await fromCloud();
+      if(ok){setSync('ok','Update ✓ '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}));render();}
+    }
+  }catch(e){}
+}
+setInterval(checkTS,5000);
 
 (async()=>{await loadCloud();render();})();
 </script>
