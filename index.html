@@ -224,7 +224,7 @@ input[type=range]{width:100%;accent-color:var(--txt)}
 <div class="toast" id="toast"></div>
 
 <script>
-const API='https://script.google.com/macros/s/AKfycbzS20YY_uzX5UDWYR2DSdHdpqwdAkuprookw-qoY0Y5fHXc3Qw4pmVjwXrbFZaWDfyh/exec';
+const API='https://script.google.com/macros/s/AKfycbznAkN7EgfmwYy92q5LowIlzoK1vvKfu-5Ty0Jp8rfefPfn1aLr2E_7qjzvDZqgM2QP/exec';
 const T=new Date();T.setHours(0,0,0,0);
 let items=[],filt='semua',sk='date',sd='asc',eid=null,step=0,md={},busy=false;
 let userToken='',userName='',userEmail='',userPic='',lastTS='';
@@ -315,7 +315,7 @@ function jsonp(url){
 }
 
 function apiUrl(params){
-  return API+'?token='+encodeURIComponent(userToken)+'&'+params;
+  const uid=userEmail.replace(/[^a-zA-Z0-9]/g,'_');return API+'?uid='+encodeURIComponent(uid)+'&email='+encodeURIComponent(userEmail)+'&'+params;
 }
 
 async function fromCloud(){
